@@ -1,12 +1,9 @@
+google-generativeai>=0.1.0  # For Google Gemini API
+python-dotenv>=1.0.0        # To load environment variables
+streamlit>=1.25.0           # For building the web interface
+speechrecognition
 streamlit
-mysql-connector-python
-google-generativeai
+pytesseract
+pillow
 python-dotenv
 PyPDF2
-pillow
-pytesseract
-SpeechRecognition
-python-docx
-pyaudio
-wheel
-docx
