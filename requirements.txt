@@ -9,3 +9,4 @@ SpeechRecognition
 python-docx
 pyaudio
 wheel
+docx
