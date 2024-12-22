@@ -8,4 +8,4 @@ pillow
 python-dotenv
 PyPDF2
 pyAudio
-wheels
+wheel
