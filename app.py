@@ -7,7 +7,7 @@ import PyPDF2
 from PIL import Image
 import pytesseract
 from io import StringIO
-from db.connection import get_db_connection  # Import database connection
+
 
 load_dotenv()
 
@@ -77,24 +77,7 @@ def process_uploaded_file(uploaded_file):
             st.write(f"{key}: {value}")
     return file_content
 
-# Function to log interaction in the database
-def log_interaction(user_input, response):
-    conn = get_db_connection()
-    if conn:
-        try:
-            cursor = conn.cursor()
-            cursor.execute(
-                "INSERT INTO interactions (user_input, response) VALUES (%s, %s)",
-                (user_input, response)
-            )
-            conn.commit()
-        except Exception as e:
-            print(f"Error while inserting data: {e}")
-        finally:
-            cursor.close()
-            conn.close()
-    else:
-        print("Database connection failed")
+
 
 # Streamlit app interface
 st.set_page_config(page_title="Talk-n-Ease", page_icon="🤖")
@@ -124,12 +107,5 @@ if submit or user_input:
             prompt = user_input if user_input.strip() else file_content
             response = get_gemini_response(prompt)
 
-            # Log interaction in the database
-            log_interaction(user_input, response)
-
-            if response:
-                st.markdown(f"<div class='response-text'>{response}</div>", unsafe_allow_html=True)
-            else:
-                st.markdown("<div class='response-error'>Sorry, something went wrong. Please try again later.</div>", unsafe_allow_html=True)
     else:
         st.error("Please enter a question or upload a file to get a response.")
