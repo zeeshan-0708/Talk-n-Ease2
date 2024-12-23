@@ -218,7 +218,6 @@ import PyPDF2
 from docx import Document
 from PIL import Image
 import pytesseract
-from io import StringIO
 
 # Load environment variables
 load_dotenv()
@@ -298,33 +297,51 @@ def process_uploaded_file(uploaded_file):
 # Custom UI Styling
 st.markdown("""
     <style>
+        /* Default Font Style */
         body {
-            background-color: #f7f7f7;
             font-family: 'Arial', sans-serif;
         }
-        .stButton>button {
-            background-color: #009688;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            padding: 15px 30px;
-            border-radius: 30px;
-            border: none;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease, transform 0.2s ease;
+
+        /* Light Theme */
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: #f7f7f7;
+                color: #333333;
+            }
+            .response-text {
+                background-color: #ffffff;
+                color: #333333;
+                border: 1px solid #e0e0e0;
+            }
+            .stButton>button {
+                background-color: #009688;
+                color: white;
+                border: none;
+            }
+            .stButton>button:hover {
+                background-color: #00796b;
+            }
         }
-        .stButton>button:hover {
-            background-color: #00796b;
-            transform: translateY(-2px);
-        }
-        .response-text {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            color: #333;
-            font-size: 18px;
-            margin-top: 20px;
+
+        /* Dark Theme */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: #e0e0e0;
+            }
+            .response-text {
+                background-color: #1e1e1e;
+                color: #e0e0e0;
+                border: 1px solid #333333;
+            }
+            .stButton>button {
+                background-color: #1e88e5;
+                color: white;
+                border: none;
+            }
+            .stButton>button:hover {
+                background-color: #1565c0;
+            }
         }
     </style>
 """, unsafe_allow_html=True)
