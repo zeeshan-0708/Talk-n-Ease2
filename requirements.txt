@@ -7,5 +7,6 @@ pytesseract
 pillow
 python-dotenv
 PyPDF2
+docx
 # pyAudio
 # wheel
